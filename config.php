@@ -60,7 +60,8 @@ return [
      *
      */
 
-    'siteName' => 'Katana',
+    'siteName' => 'Anaxamaxan',
 
-    'siteDescription' => 'Yet another awesome site.',
+    'siteDescription' => 'Mousebidextrous',
+    'twitter' => '@anaxamaxan'
 ];
