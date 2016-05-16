@@ -64,5 +64,5 @@ return [
 
     'siteDescription' => 'Mousebidextrous',
     'twitter' => '@anaxamaxan',
-    'siteBaseUrl' => 'http://anax.dev',
+    'siteBaseUrl' => '',
 ];
