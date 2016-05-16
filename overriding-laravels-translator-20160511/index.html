@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Mousebidextrous">
+        <meta name="viewport" content="width=device-width">
+        <title>Extending Laravel's Translator Anaxamaxan</title>
+
+        <!-- Fonts -->
+                        <link href='https://fonts.googleapis.com/css?family=Cinzel:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+
+        <!-- Bootstrap core CSS -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap-social.css" rel="stylesheet">'
+        <link href="/assets/css/prism-default.css" rel="stylesheet">'
+        <!-- Highlight JS - syntax highlighting -->
+        
+        <!-- Styles -->
+        <link href="/assets/css/main.css" rel="stylesheet">
+
+        <!-- Loading bar -->
+        <script src="/assets/js/pace.min.js"></script>
+
+        <!-- HTML5 shiv for IE8 support -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="secondary" class="col-sm-3 sidebar" style="display: none;">
+    <aside>
+
+        <div class="about">
+            <h4>About</h4>
+            <p>I'm Max Schwanekamp, currently senior developer at <a href="https://celearningsystems.com">CE
+                    Learning Systems</a>. I wear a lot of hats, but the majority of my time goes to <a href="https://supervisionassist.com">Supervision Assist</a>, an
+                    enterprise SaaS app in the mental health education market. I write mostly about PHP, especially within the <a href="https://laravel.com">Laravel</a> ecosystem.</p>
+        </div>
+
+        <div class="resources">
+            <h4>Resources</h4>
+            <ul class="list-unstyled">
+                <li><a href="http://www.meetup.com/eugenewebdev/">Eugene Web Developers</a></li>
+                <li><a href="http://codebyjeff.com/blog">Laravel Tips</a></li>
+                <li><a href="https://philsturgeon.uk/">Phil Sturgeon</a></li>
+            </ul>
+        </div>
+
+        <div class="socialmedia">
+            <h4>Follow</h4>
+            <div class="socials-sidebar">
+                <a class="btn btn-twitter" href="https://twitter.com/anaxamaxan" title="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="btn btn-github" href="https://github.com/anaxamaxan" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a class="btn btn-linkedin" href="https://www.linkedin.com/in/maximillianschwanekamp" title="LinkedIn">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div> <!-- /.socials-sidebar -->
+        </div>
+
+    </aside>
+</div> <!-- /#secondary -->
+        <div id="primary" class="col-sm-12">
+            <div class="content">
+                <header class="header">
+                    <hgroup class="pull-left">
+                        <h1 class="site-title">
+                            <a rel="home" title="Anaxamaxan" href="/">
+                                <i class="fa fa-subway"></i> Anaxamaxan
+                            </a>
+                        </h1>
+                    </hgroup>
+                    <div id="togglesidebar" class="btn btn-primary pull-right">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </header> <!-- /header -->
+
+                
+        <img src="/assets/img/flags.jpg" class="img-responsive">
+
+        <section class="post">
+          <header class="entry-header">
+                        <h2 class="entry-title">Extending Laravel's Translator</h2>
+            <p class="entry-meta">
+                            Posted May 15, 2016            </p>
+          </header>
+          <div class="entry-description">
+            
+    <p>Like most of the core framework, Laravel's <a href="https://laravel.com/docs/5.2/localization">Translator</a> is simple, straightforward and easy to use. There's a <code>Lang</code> static facade for it as well as two global helper functions <code>trans()</code> and <code>trans_choice()</code> that pretty much cover just about every normal use case. But what if we want to modify the default behavior a bit?</p>
+<p>My team has a project where not only do we want to support multiple languages, but also custom terminology within a language depending on our customer's needs. For example, for one customer we would refer (using English examples here) to <i>trainees</i> and <i>supervisors</i> while in another group we would refer to <i>students</i> and <i>mentors</i>. Since this still primarily a language concern, we'll leverage the Translator class.</p>
+<p>The first order of business will be to make sure that when we ask the app for a Translator instance, either via the <code>trans()</code> method or via the <code>Lang</code> facade, we get an instance of our custom Translator class. Let's start with a test. Create a file at <code>app/tests/Foundation/TranslatorTest.php</code> and enter:</p>
+<pre><code class="language-php">class TranslatorTest extends TestCase
+{
+    /**
+     * Verify that app['translator'] returns our translator
+     */
+    public function testTranslatorInstanceIsCustom()
+    {
+        $this-&gt;assertEquals('App\\Foundation\\Translator', get_class($this-&gt;app['translator']));
+    }
+}</code></pre>
+<p>This test is just getting the registered instance of the Translator, and checking its class. We're comparing strings here because we haven't created our custom Translator class. Run <code>phpunit</code> from the root of your app and you'll see the test fails, as expected.</p>
+<p>Let's create the Translator class. Create a file at <code>app/Foundation/Translator.php</code> and enter:</p>
+<pre><code class="language-php">namespace App\Foundation;
+
+use Illuminate\Translation\Translator as LaravelTranslator;
+
+class Translator extends LaravelTranslator
+{}</code></pre>
+<p>If we were to run <code>phpunit</code> again, it will still fail. The key to just about everything in Laravel is a service provider. We need to tell the framework that when we ask for a Translator instance, we want our custom class. Normally you'd create a provider via <code>php artisan make:provider</code> but we're going to just extend an existing provider so just create an empty file at <code>app/Providers/TranslationServiceProvider.php</code> and enter:</p>
+<pre><code class="language-php">namespace App\Providers;
+
+use App\Foundation\Translator;
+use Illuminate\Translation\TranslationServiceProvider as LaravelTranslationProvider;
+
+class TranslationServiceProvider extends LaravelTranslationProvider
+{
+    public function register()
+    {
+        $this-&gt;registerLoader();
+
+        $this-&gt;app-&gt;singleton('translator', function ($app) {
+            $loader = $app['translation.loader'];
+            $locale = $app['config']['app.locale'];
+
+            $trans = new Translator($loader, $locale);
+            $trans-&gt;setFallback($app['config']['app.fallback_locale']);
+
+            return $trans;
+        });
+    }
+}</code></pre>
+<p>If you compare this with <code>Illuminate\Translation\TranslationServiceProvider::register()</code> you'll notice that it's <em>exactly the same</em>. The difference is that in our version, <code>Translator</code> resolves to <code>App\Foundation\Translator</code>. So now in our app when we use the <code>Lang::line()</code> facade method or the <code>trans()</code> helper (I nearly always use the helper), we'll be calling the singleton instance of our extended Translator class.</p>
+<p>Now that our custom Translator class exists, let's modify our test a bit:</p>
+<pre><code class="language-php">use \Illuminate\Support\Facades\Lang;
+use \App\Foundation\Translator;
+
+class TranslatorTest extends TestCase
+{
+    /**
+     * Verify that app['translator'] returns our translator
+     */
+    public function testTranslatorInstanceIsCustom()
+    {
+        $this-&gt;assertInstanceOf(Translator::class, $this-&gt;app['translator']);
+        $this-&gt;assertInstanceOf(Translator::class, trans());
+        $this-&gt;assertInstanceOf(Translator::class, Lang::getFacadeRoot());
+    }
+}</code></pre>
+<p>Run <code>phpunit</code> and we're green. Honestly, we can just stop here and you'll likely know what to do. But let's go ahead and make our custom Translator do something. Back in my app's example, we use :traineeWord when we want 'trainee' or 'student' depending on context. Let's add another test to our suite:</p>
+<pre class="line-numbers" data-start="16"><code class="language-php">
+    /**
+     * Verify that translator uses the word for 'trainee' preferred by a specified organization.
+     */
+    public function testTranslatorUsesDynamicWord()
+    {
+        $orgA = Mockery::mock('App\\Organization');
+        $orgA->shouldReceive('traineeWord')->andReturn('trainee');
+
+        $translator = $this->app['translator'];
+        $translator->setOrganization($orgA);
+        $this->assertEquals('trainee',trans(':traineeWord'));
+
+        $orgB = Mockery::mock('App\\Organization');
+        $orgB->shouldReceive('traineeWord')->andReturn('student');
+        $translator->setOrganization($orgB);
+        $this->assertEquals('student',trans(':traineeWord'));
+
+        $translator->setLocale('es'); // Español
+        $this->assertEquals('estudiante',trans(':traineeWord'));
+    }
+</code></pre>
+<p>Let's quickly run down what this test is doing. At <strong>line 21</strong> we create a mock of our app's Organization model. At <strong>line 22</strong> we want the organization to return the string 'trainee' when <code>traineeWord()</code> is called, but only once. <strong>Lines 24-26</strong> check that the translated string works. Note that this could be a line in a language file, but if the line does not exist, Translator just returns the line unchanged. At <strong>lines 28-31</strong> we get a new mock Organization who prefer 'student' over 'trainee' so we run make the call again and it's correct. Finally at <strong>lines 33-34</strong> we set the locale (language) to 'es' (Spanish) and check that we get the Spanish equivalent for English 'student'.</p>
+<p>Run <code>phpunit</code> and of course it fails because we need to create the <code>Translator::setOrganization()</code> method and override the Laravel default behavior for <code>Translator::get()</code> to use it:</p>
+<pre><code class="language-php">namespace App\Foundation;
+
+use App\Organization;
+use Illuminate\Translation\Translator as LaravelTranslator;
+
+class Translator extends LaravelTranslator
+{
+    private $organization;
+
+    public function get($key, array $replace = [], $locale = null, $fallback = true)
+    {
+        $line = parent::get($key, $replace, $locale, $fallback);
+        return $this-&gt;replaceDynamicWords($line);
+    }
+
+    public function setOrganization(Organization $org)
+    {
+        $this-&gt;organization = $org;
+    }
+
+    private function replaceDynamicWords($line)
+    {
+        $traineeWord = parent::get("dynamic_words.{$this-&gt;organization-&gt;traineeWord()}");
+        return str_replace(':traineeWord',$traineeWord,$line);
+    }
+}</code></pre>
+<p>The call in our test to <code>trans(':traineeWord')</code> helper just proxies to <code>Translator::get()</code>, which itself just calls <code>parent::get()</code> but before returning the result, we send it to <code>replaceDynamicWords()</code>. <strong>Line 23</strong> gets the word as set in the organization's preferences, and then translates it from a file with all possible words for 'trainee'. The lang/en/dynamic_words.php file will have lines like:</p>
+<pre><code class="language-php">return [
+    'trainee' =&gt; 'trainee',
+    'student' =&gt; 'student'
+];</code></pre>
+<p>The lang/es/dynamic_words.php file will have the equivalents:</p>
+<pre><code class="language-php">return [
+    'trainee' =&gt; 'aprendiz',
+    'student' =&gt; 'estudiante',
+]</code></pre>
+<p>Finally we replace the placeholder ':traineeWord' with our translated word. If the organization uses 'student', then <code>:traineeWord</code> will become 'student' in English and 'estudiante' in Spanish. Our tests should cover this, so now if run <code>phpunit</code> we're green!</p>
+<p>Obviously, this example is quite simplistic and frankly a lot of work for the sake of replacing a single word! But replace the single traineeWord with an array of 'dynamic words' from the organization's preferences, or inject a DynamicWordManager into your Translation and suddenly things become much more useful.</p>          </div>
+        </section>
+
+        <section class="comments">
+            <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.url = 'http://anax.dev/overriding-laravels-translator-20160511/';
+this.page.identifier = 'overriding-laravels-translator-20160511';
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//anaxamaxan.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+
+                <footer class="footer">
+                    <p class="copyright">Copyright Max Schwanekamp &copy; 2016</p>
+                    <p class="powered-by">Proudly powered by <a href="http://themsaid.github.io/katana">Katana</a></p>
+                </footer> <!-- /footer -->
+            </div>
+        </div><!-- /#primary -->
+
+        <!-- Scripts -->
+        <script src="/assets/js/jquery-1.11.0.min.js"></script>
+                <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/custom.js"></script>
+    </body>
+</html>
