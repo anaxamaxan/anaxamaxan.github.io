@@ -1,79 +1,123 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mousebidextrous">
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Mousebidextrous">
+        <meta name="viewport" content="width=device-width">
+        <title> Anaxamaxan</title>
 
-    <title>Anaxamaxan </title>
+        <!-- Fonts -->
+                        <link href='https://fonts.googleapis.com/css?family=Cinzel:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
-</head>
 
-<body>
+        <!-- Bootstrap core CSS -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap-social.css" rel="stylesheet">'
+        <link href="/assets/css/prism-default.css" rel="stylesheet">'
+        <!-- Highlight JS - syntax highlighting -->
+        
+        <!-- Styles -->
+        <link href="/assets/css/main.css" rel="stylesheet">
 
-<nav>
-    <div class="wrapper">
-        <strong>Anaxamaxan</strong>
+        <!-- Loading bar -->
+        <script src="/assets/js/pace.min.js"></script>
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="https://github.com/themsaid/katana">Github</a></li>
-            <li><a href="https://themsaid.github.io/katana">Docs</a></li>
-        </ul>
-    </div>
-</nav>
+        <!-- HTML5 shiv for IE8 support -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="secondary" class="col-sm-3 sidebar" style="display: none;">
+    <aside>
 
-<div class="wrapper m-t-30">
-    
-    <div class="welcome">
-        <div class="wrapper">
-            <h1>Welcome Home!</h1>
-            <span>Mousebidextrous</span>
+        <div class="about">
+            <h4>About</h4>
+            <p>I'm Max Schwanekamp, currently senior developer at <a href="https://celearningsystems.com">CE
+                    Learning Systems</a>. I wear a lot of hats, but the majority of my time goes to <a href="https://supervisionassist.com">Supervision Assist</a>, an
+                    enterprise SaaS app in the mental health education market. I write mostly about PHP, especially within the <a href="https://laravel.com">Laravel</a> ecosystem.</p>
         </div>
-    </div>
 
+        <div class="resources">
+            <h4>Resources</h4>
+            <ul class="list-unstyled">
+                <li><a href="http://www.meetup.com/eugenewebdev/">Eugene Web Developers</a></li>
+                <li><a href="http://codebyjeff.com/blog">Laravel Tips</a></li>
+                <li><a href="https://philsturgeon.uk/">Phil Sturgeon</a></li>
+            </ul>
+        </div>
 
-    <div class="left-side">
-        <p>Simplicity is the key to great user experiences. Create fewer features, but make them great instead of just good.
-Show fewer elements, use simplistic styling to reduce cognitive load. Dare to say ‘No’ to prevent the core
-functionality from being lost in the noise.</p>
-<blockquote>
-<p>Don’t go for ‘WOW’, go for ‘of course’</p>
-</blockquote>
-<p>Never chase the <strong>‘wow-effect’</strong>. Product design succeeds when it solves the problem or need of our users in the best possible way.
-Design the product effective &amp; delightful. The reaction we are after from our users is “Of course, that is obvious”.</p>
-<p>I wrote down some design <em>principles</em> for our team to help us make design decisions:</p>
-<ul>
-<li>Define the problem first</li>
-<li>Create more value by creating less</li>
-<li>Strive for consistency</li>
-<li>Focus the user on one primary action at a time</li>
-<li>Use your user’s language</li>
-<li>Minimize user input</li>
-</ul>
-<hr />
-<p>Check the complete post here:</p>
-<p><a href="https://medium.com/@WdeB/digital-product-design-principles-8bc9eb6c080c">https://medium.com/@WdeB/digital-product-design-principles-8bc9eb6c080c</a></p>    </div>
+        <div class="socialmedia">
+            <h4>Follow</h4>
+            <div class="socials-sidebar">
+                <a class="btn btn-twitter" href="https://twitter.com/anaxamaxan" title="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="btn btn-github" href="https://github.com/anaxamaxan" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a class="btn btn-linkedin" href="https://www.linkedin.com/in/maximillianschwanekamp" title="LinkedIn">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div> <!-- /.socials-sidebar -->
+        </div>
 
-    <div class="right-side">
-        <h3>From the blog</h3>
+    </aside>
+</div> <!-- /#secondary -->
+        <div id="primary" class="col-sm-12">
+            <div class="content">
+                <header class="header">
+                    <hgroup class="pull-left">
+                        <h1 class="site-title">
+                            <a rel="home" title="Anaxamaxan" href="/">
+                                <i class="fa fa-subway"></i> Anaxamaxan
+                            </a>
+                        </h1>
+                    </hgroup>
+                    <div id="togglesidebar" class="btn btn-primary pull-right">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </header> <!-- /header -->
 
-    <a href="/hello-world-20160502/">Hello World</a><br>
-    <a href="/guided-by-the-research-on-well-being-20160226/">Guided by the Research on Well-Being</a><br>
+                
+            <section class="post">
+            <header class="entry-header">
+                                <div class="entry-tags">
+                     <span class="label label-info">Laravel</span>                 </div>
+                <h2 class="entry-title"><a href="/overriding-laravels-translator-20160511/">Extending Laravel&#039;s Translator</a></h2>
+                <p class="entry-meta">Posted on May 15, 2016 :: <i class="fa fa-comment"></i> <a href="/overriding-laravels-translator-20160511/#disqus_thread">No comments</a></p>
+            </header>
+            <div class="entry-description">
+                    <p>Like most of the core framework, Laravel's <a href="https://laravel.com/docs/5.2/localization">Translator</a> is simple, straightforward and easy to use. There's a <code>Lang</code> static facade for it as well as two global helper functions <code>trans()</code> and <code>trans_choice()</code> that pretty much cover just about every normal use case. But what if we want to modify the default behavior a bit?</p>
+            </div>
+        </section> <!-- /.post -->
+            <section class="post">
+            <header class="entry-header">
+                                <div class="entry-tags">
+                     <span class="label label-info"></span>                 </div>
+                <h2 class="entry-title"><a href="/hello-world-20160502/">Hello World</a></h2>
+                <p class="entry-meta">Posted on May 2, 2016 :: <i class="fa fa-comment"></i> <a href="/hello-world-20160502/#disqus_thread">No comments</a></p>
+            </header>
+            <div class="entry-description">
+                In which I emit the canonical first words
+            </div>
+        </section> <!-- /.post -->
+        
+    <script id="dsq-count-scr" src="//anaxamaxan.disqus.com/count.js" async></script>
 
-<br>
-Want to read more?
-<br>
-<a href="/blog/">Check all posts</a>    </div>
+                <footer class="footer">
+                    <p class="copyright">Copyright Max Schwanekamp &copy; 2016</p>
+                    <p class="powered-by">Proudly powered by <a href="http://themsaid.github.io/katana">Katana</a></p>
+                </footer> <!-- /footer -->
+            </div>
+        </div><!-- /#primary -->
 
-</div>
-
-<div class="clearfix"></div>
-
-</body>
+        <!-- Scripts -->
+        <script src="/assets/js/jquery-1.11.0.min.js"></script>
+                <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/custom.js"></script>
+    </body>
 </html>

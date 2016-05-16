@@ -1,62 +1,136 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mousebidextrous">
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="Mousebidextrous">
+        <meta name="viewport" content="width=device-width">
+        <title>Hello World Anaxamaxan</title>
 
-    <title>Anaxamaxan - Hello World</title>
+        <!-- Fonts -->
+                        <link href='https://fonts.googleapis.com/css?family=Cinzel:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/style.css">
-</head>
 
-<body>
+        <!-- Bootstrap core CSS -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap-social.css" rel="stylesheet">'
+        <link href="/assets/css/prism-default.css" rel="stylesheet">'
+        <!-- Highlight JS - syntax highlighting -->
+        
+        <!-- Styles -->
+        <link href="/assets/css/main.css" rel="stylesheet">
 
-<nav>
-    <div class="wrapper">
-        <strong>Anaxamaxan</strong>
+        <!-- Loading bar -->
+        <script src="/assets/js/pace.min.js"></script>
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="https://github.com/themsaid/katana">Github</a></li>
-            <li><a href="https://themsaid.github.io/katana">Docs</a></li>
-        </ul>
-    </div>
-</nav>
+        <!-- HTML5 shiv for IE8 support -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="secondary" class="col-sm-3 sidebar" style="display: none;">
+    <aside>
 
-<div class="wrapper m-t-30">
-    
-    <div class="wrapper m-t-30">
-        <div class="left-side">
-            <a href="/blog/">Back to blog</a>
-
-            <h1>Hello World</h1>
-
-            <small>May 2, 2016</small>
-
-            
-    <p>The easiest way to accomplish something is to start. So: <strong>Hello World.</strong></p>
+        <div class="about">
+            <h4>About</h4>
+            <p>I'm Max Schwanekamp, currently senior developer at <a href="https://celearningsystems.com">CE
+                    Learning Systems</a>. I wear a lot of hats, but the majority of my time goes to <a href="https://supervisionassist.com">Supervision Assist</a>, an
+                    enterprise SaaS app in the mental health education market. I write mostly about PHP, especially within the <a href="https://laravel.com">Laravel</a> ecosystem.</p>
         </div>
 
-        <div class="right-side">
-            <h3>From the blog</h3>
+        <div class="resources">
+            <h4>Resources</h4>
+            <ul class="list-unstyled">
+                <li><a href="http://www.meetup.com/eugenewebdev/">Eugene Web Developers</a></li>
+                <li><a href="http://codebyjeff.com/blog">Laravel Tips</a></li>
+                <li><a href="https://philsturgeon.uk/">Phil Sturgeon</a></li>
+            </ul>
+        </div>
 
-    <a href="/hello-world-20160502/">Hello World</a><br>
-    <a href="/guided-by-the-research-on-well-being-20160226/">Guided by the Research on Well-Being</a><br>
+        <div class="socialmedia">
+            <h4>Follow</h4>
+            <div class="socials-sidebar">
+                <a class="btn btn-twitter" href="https://twitter.com/anaxamaxan" title="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="btn btn-github" href="https://github.com/anaxamaxan" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a class="btn btn-linkedin" href="https://www.linkedin.com/in/maximillianschwanekamp" title="LinkedIn">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div> <!-- /.socials-sidebar -->
+        </div>
 
-<br>
-Want to read more?
-<br>
-<a href="/blog/">Check all posts</a>        </div>
-    </div>
+    </aside>
+</div> <!-- /#secondary -->
+        <div id="primary" class="col-sm-12">
+            <div class="content">
+                <header class="header">
+                    <hgroup class="pull-left">
+                        <h1 class="site-title">
+                            <a rel="home" title="Anaxamaxan" href="/">
+                                <i class="fa fa-subway"></i> Anaxamaxan
+                            </a>
+                        </h1>
+                    </hgroup>
+                    <div id="togglesidebar" class="btn btn-primary pull-right">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </header> <!-- /header -->
 
-</div>
+                
+        <img src="/assets/img/" class="img-responsive">
 
-<div class="clearfix"></div>
+        <section class="post">
+          <header class="entry-header">
+                        <h2 class="entry-title">Hello World</h2>
+            <p class="entry-meta">
+                            Posted May 2, 2016            </p>
+          </header>
+          <div class="entry-description">
+            
+    <p>The easiest way to accomplish something is to start. So: <strong>Hello World.</strong></p>
+          </div>
+        </section>
 
-</body>
+        <section class="comments">
+            <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.url = 'http://anax.dev/hello-world-20160502/';
+this.page.identifier = 'hello-world-20160502';
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//anaxamaxan.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>        </section>
+
+                <footer class="footer">
+                    <p class="copyright">Copyright Max Schwanekamp &copy; 2016</p>
+                    <p class="powered-by">Proudly powered by <a href="http://themsaid.github.io/katana">Katana</a></p>
+                </footer> <!-- /footer -->
+            </div>
+        </div><!-- /#primary -->
+
+        <!-- Scripts -->
+        <script src="/assets/js/jquery-1.11.0.min.js"></script>
+                <script src="/assets/js/prism.js"></script>
+        <script src="/assets/js/custom.js"></script>
+    </body>
 </html>
