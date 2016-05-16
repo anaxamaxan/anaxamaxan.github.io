@@ -127,13 +127,15 @@ a, a:focus, a:hover {
 
 .entry-description {
   color: #344151;
-  font-family: "Source Sans Pro",sans-serif;
+  /*font-family: "Source Sans Pro",sans-serif;*/
   font-size: 1.15em;
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.5em;
 }
-
+.entry-description p {
+  margin-top: 1em;
+}
 .entry-meta {
   color: #999;
   font-size: 90%;
