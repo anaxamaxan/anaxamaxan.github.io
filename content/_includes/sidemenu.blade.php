@@ -13,6 +13,9 @@
             <ul class="list-unstyled">
                 <li><a href="http://www.meetup.com/eugenewebdev/">Eugene Web Developers</a></li>
                 <li><a href="http://codebyjeff.com/blog">Laravel Tips</a></li>
+                <li><a href="https://laravelista.com/">Laravelista</a></li>
+                <li><a href="http://adamwathan.me/">Adam Wathan</a></li>
+                <li><a href="http://www.dadsindev.com/">Dads in Development Podcast</a></li>
                 <li><a href="https://philsturgeon.uk/">Phil Sturgeon</a></li>
             </ul>
         </div>
