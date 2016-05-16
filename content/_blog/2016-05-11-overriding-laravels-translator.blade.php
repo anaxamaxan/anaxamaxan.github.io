@@ -98,7 +98,7 @@
     }
 ```
 
-    Run `phpunit` and we're green. Honestly, we can just stop here and you'll likely know what to do. But let's go ahead and make our custom Translator do something. Back in my app's example, we use :traineeWord when we want 'trainee' or 'student' depending on context. Let's add another test to our suite:
+    Run `phpunit` and we're green. Honestly, we can just stop here and you'll likely know what to do. But for the sake of illustration let's go ahead and make our custom Translator do something. Back in my app's example, we use :traineeWord when we want 'trainee' or 'student' depending on context. Let's add another test to our suite:
 
 <pre class="line-numbers" data-start="16"><code class="language-php">
         /**
