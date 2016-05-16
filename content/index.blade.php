@@ -10,7 +10,7 @@
                     @foreach(explode(',',$blogPost->tags) as $tag) <span class="label label-info">{{ $tag }}</span> @endforeach
                 </div>
                 <h2 class="entry-title"><a href="@url($blogPost->path)">{{ $blogPost->title }}</a></h2>
-                <p class="entry-meta">Posted on {{ $blogPost->date }} :: <i class="fa fa-comment"></i> <a href="@url($blogPost->path)#disqus_thread">No comments</a></p>
+                <p class="entry-meta">Posted on {{ $blogPost->date }} :: <i class="fa fa-comment"></i> <a href="@url($blogPost->path)#disqus_thread" data-disqus-identifier="{{ str_replace('/','-',ltrim($currentUrlPath,'/')) }}">No comments</a></p>
             </header>
             <div class="entry-description">
                 {!! $blogPost->brief !!}
